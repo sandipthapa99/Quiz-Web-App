@@ -1,0 +1,52 @@
+  {% load static %}
+<head>
+  {% block title %}
+  {% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,700">
+  <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">-->
+  <link rel="stylesheet" href="{% static 'css/styles-merged.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/signin.css' %}">
+  <link rel="stylesheet" href="{% static 'css/courses.css' %}">
+
+ 
+</head>
+
+
+<nav class="navbar probootstrap-megamenu navbar-default probootstrap-navbar">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/" title="Learn & Quiz"></a>
+    </div>
+
+    <div id="navbar-collapse" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/">Home</a></li>
+
+        
+        {% if user.is_authenticated %}
+        <li class="disabled"><a href="#">Hello, {{user.username}}</a></li>
+        <li><a href="{{courses}}/courses">Courses</a></li>
+        <li><a href="{{ participants }}/logout">Log Out</a></li>
+        <li><a href="{{ participants }}/update">Update your account</a></li>
+        <li><a href="{{ participants }}/profile">Profile</a></li>
+        {% else %}
+        
+        <li class="probootstra-cta-button"><a href="{{ participants }}/signin" class="btn">Log in</a></li>
+        <li class="probootstra-cta-button last"><a href="{{ participants }}/signup" class="btn">Sign up</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>  
+
+{% block content %}
+{% endblock %} 

@@ -1,0 +1,150 @@
+{% extends "header.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}
+    <title>Learn & Quiz</title>
+    {% endblock %}
+  
+</head>
+
+
+
+{% block content %}
+
+
+<div style="text-align:center;">
+  {% if user.is_authenticated %}
+    <h2>Hello, {{user.username}}</h2>
+    <h1>Welcome to our page!</h1>
+  {% else %}
+  <section class="probootstrap-hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center probootstrap-hero-text pb0 probootstrap-animate" data-animate-effect="fadeIn">
+            <h1>Start Learning Today!</h1>
+            <p>Learn while playing. Learning had never been so Fun!</p>
+            <p>
+              <a href="{{courses}}/courses" class="btn btn-primary btn-ghost btn-lg" role="button">See Courses</a>
+            </p>
+            </div>
+        </div>
+
+          <div class="row probootstrap-feature-showcase">
+            <div class="col-md-4 col-md-push-8 probootstrap-showcase-nav probootstrap-animate">
+              <ul>
+                <li class="active">
+                  <a href="#">Onbound Learning</a>
+                  <p>Don’t limit yourself! Now there are no limits – no more set locations, time, or pace! You decide where, when, and how quickly you’ll learn, and you can do it anytime, anywhere, on any device.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-8 col-md-pull-4 probootstrap-animate" style="position: relative;">
+              <div class="probootstrap-home-showcase-wrap">
+                <div class="probootstrap-home-showcase-inner">
+                  <div class="probootstrap-chrome">
+                    <div><span></span><span></span><span></span></div>
+                  </div>
+                  <div class="probootstrap-image-showcase">
+                    <ul class="probootstrap-images-list">
+                      <li class="active"><img src="{% static 'img/img_showcase_1.jpg' %}" alt="Image" class="img-responsive"></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+    <section class="probootstrap-section probootstrap-bg-white probootstrap-zindex-above-showcase">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate" data-animate-effect="fadeIn">
+            <h2>Features</h2>
+          </div>
+        </div>
+        <!-- END row -->
+        <div class="row probootstrap-gutter60">
+          <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeInLeft">
+            <div class="service text-center">
+              <div class="text">
+                <h3>Lern by doing</h3>
+                <p>Practice during lessons, practice between lessons, practice whenever you can. Master the task, then reinforce and test your knowledge with fun, hands-on exercises and interactive quizzes.</p>
+              </div>  
+            </div>
+          </div>
+          
+          <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeInRight">
+            <div class="service text-center">
+              <div class="text">
+                <h3>Mass Learning</h3>
+                <p>Learning has never been this social and accessible for so many! Bit-sized lessons and fun practice sessions grab your attention and keep you focused, for guaranteed best results!</p>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="col-md-4 probootstrap-animate">
+            <div class="service text-center">
+              <div class="text">
+                <h3>Learn while playing</h3>
+                <p>Learning should be fun. Develop your profile, unlock each level, earn skill points and achievements, and challenge yourself by competing with other learners throughout the world.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="probootstrap-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-4 probootstrap-animate">
+                <div class="probootstrap-footer-widget">
+                  <h3>Contact Us</h3>
+                  <ul>
+                    <li>Herald College</li>
+                    <li>Hadigaun Marg, Kathmandu</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 probootstrap-animate">
+            <div class="probootstrap-footer-widget">
+              <h3>Social Media</h3>
+              <p>You can also connect to us through social media platform.</p>
+              <ul class="probootstrap-footer-social">
+                <li><a href="#"><i class="icon-twitter"></i></a></li>
+                <li><a href="#"><i class="icon-facebook"></i></a></li>
+                <li><a href="#"><i class="icon-github"></i></a></li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- END row -->
+        <div class="row">
+          <div class="col-md-12 copyright probootstrap-animate">
+            <p><small>&copy; 2020 <a href="#">Learn & Quiz</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    {% endif %}
+</div>
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
+<script src="{% static 'js/scripts.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+{% endblock %}
+
+
+</html>
