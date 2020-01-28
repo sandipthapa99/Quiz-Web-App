@@ -5,12 +5,13 @@
 
 <form method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
-	<div>
-		{{form}}
+	<div class="container" style="margin-top: 50px;">
+		{{form}}<br>
+	<button class="btn btn-primary btn-ghost btn-lg" type="submit">Upload</button>
 	</div>
 	
 
-	<button class="btn btn-primarry btn-sm" type="submit">Upload</button>
+	
 </form>
 
 <div class="container">
