@@ -11,6 +11,7 @@ urlpatterns = [
     path('',include('participants.urls')),
     path('',include('courses.urls')),
     path('',include('question.urls')),
+    path('',include('resources.urls')),
     
 
 ]

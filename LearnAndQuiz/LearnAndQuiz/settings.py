@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'participants',
     'question',
+    'resources',
 ]
 
 MIDDLEWARE = [
