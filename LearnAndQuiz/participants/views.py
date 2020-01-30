@@ -43,10 +43,10 @@ def signup(request):
 			else:
 				user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
 				user.save();
-				print('user created')
+				messages.success(request, "Account created for " + username + "." + " Please Login to continue.")
 				return redirect('participants:signin')
 		else:
-			messages.info(request, 'Sorry! The two asswords did not match!')
+			messages.info(request, 'Sorry! The two passwords did not match!')
 			return redirect('/')
 		return redirect('/')
 		
