@@ -1,0 +1,39 @@
+{% extends 'header.html' %}
+{% load static%}
+{% block content %}
+
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<div class="container">
+<div class="form-group">
+    <label>Title:</label>
+    <div class="">{{form.title}}</div>
+
+</div>
+<div class="form-group">
+    <label>Author:</label>
+    <div>{{form.author}}</div>
+</div>
+<div class="form-group">
+   	<label>File:</label>
+   	{{form.file}}
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+
+</div>
+</form>
+
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-4">
+			<p><a href="{% url 'resources:resource' %}">Download Resources</a></p>
+		</div>
+	</div>
+</div>
+</div>
+
+
+<script src="{% static 'js/scripts.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+{% endblock %}
