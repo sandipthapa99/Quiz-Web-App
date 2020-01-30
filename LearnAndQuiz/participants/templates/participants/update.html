@@ -10,23 +10,28 @@
     {% endblock %}
 </head>
 <body>
-	<form method="post" action="done">
+	<div class="d-flex justify-content-center align-items-center login-container">
+	<form method="post" action="done" class="login-form text-center">
 		{% csrf_token %}
-		<ul>
-			<li>Username:</li>
-			<input type="text" name="username" placeholder="{{ user.username }}" required="True">
-			<li>First Name</li>
-			<input type="text" name="first_name" placeholder="{{ user.first_name }}" required="True">			
-			<li>Last Name</li>
-			<input type="text" name="last_name" placeholder="{{ user.last_name }}" required="True">			
-			<li>Email</li>
-			<input type="text" name="email" placeholder="{{ user.email }}" required="True">			
-			
-			<input type="submit" name="update" value="Update">
-		</ul>
-
+		<h1 class="mb-5 font-weight-light text-uppercase">
+			Update Acoount Details
+		</h1>
+		<div class="form-group">
+            <input type="text" name="username" class="form-control rounded-pill form-control-lg" placeholder="username">
+        </div>
+        <div class="form-group">
+            <input type="text" name="first_name" class="form-control rounded-pill form-control-lg" placeholder="First Name">
+        </div>
+        <div class="form-group">
+            <input type="text" name="last_name" class="form-control rounded-pill form-control-lg" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+            <input type="email" name="email" class="form-control rounded-pill form-control-lg" placeholder="E-mail">
+        </div>
+        <button type="submit" class="btn mt-5 rounded-pill btn-lg btn-custom btn-block text-uppercase">Submit</button>
 
 	</form>
+</div>
 </body>
 {% endblock %}
 

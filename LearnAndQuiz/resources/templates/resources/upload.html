@@ -4,14 +4,24 @@
 
 
 <form method="POST" enctype="multipart/form-data">
-	{% csrf_token %}
-	<div class="container" style="margin-top: 50px;">
-		{{form}}<br>
-	<button class="btn btn-primary btn-ghost btn-lg" type="submit">Upload</button>
-	</div>
-	
+{% csrf_token %}
+<div class="container">
+<div class="form-group">
+    <label>Title:</label>
+    <div class="">{{form.title}}</div>
 
-	
+</div>
+<div class="form-group">
+    <label>Author:</label>
+    <div>{{form.author}}</div>
+</div>
+<div class="form-group">
+   	<label>File:</label>
+   	{{form.file}}
+</div>
+<button type="submit" class="btn btn-primary">Submit</button>
+
+</div>
 </form>
 
 <div class="container">
@@ -22,6 +32,8 @@
 	</div>
 </div>
 </div>
+
+
 <script src="{% static 'js/scripts.min.js' %}"></script>
 <script src="{% static 'js/custom.min.js' %}"></script>
 {% endblock %}
