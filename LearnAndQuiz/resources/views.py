@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Resource
 from .forms import ResourceForm
 from django.db.models import Q
+from django.http import HttpResponse, JsonResponse
 
 def upload_resource(request):
 	if request.method == "POST":
@@ -13,10 +14,13 @@ def upload_resource(request):
 	return render(request, "resources/upload.html", {"form": form})
 
 
-
-
-
-
 def resource_Page(request):
 	resource = Resource.objects.all()
 	return render(request, "resources/resourcePage.html", {"resources": resource})
+
+
+
+
+
+
+
