@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'participants',
     'question',
     'resources',
+    'restapi',
 ]
 
 MIDDLEWARE = [
