@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'participants',
+    'participants.apps.ParticipantsConfig',
     'question',
     'resources',
     'restapi',
@@ -130,5 +130,5 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assests')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/courses/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#directory where uploaded photos are stored
+MEDIA_URL = '/media/' #public url of directory

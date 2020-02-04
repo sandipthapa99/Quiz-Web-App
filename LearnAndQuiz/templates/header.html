@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/signin.css' %}">
   <link rel="stylesheet" href="{% static 'css/courses.css' %}">
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
 
  
 </head>
@@ -36,7 +37,6 @@
         <li class="disabled"><a href="#">Hello, {{user.username}}</a></li>
         <li><a href="{{courses}}/courses">Courses</a></li>
         <li><a href="{{ participants }}/logout">Log Out</a></li>
-        <li><a href="{{ participants }}/update">Update your account</a></li>
         <li><a href="{{ participants }}/profile">Profile</a></li>
         {% else %}
         
