@@ -17,4 +17,5 @@ urlpatterns = [
 
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG: #working in debug mode, not for deployment
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

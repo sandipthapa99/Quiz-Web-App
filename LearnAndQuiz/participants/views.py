@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
+from .forms import participants_update_form, profile_update_form
 
 def index(request):
 	return render(request, 'index.html')
@@ -58,40 +59,50 @@ def logout(request):
 	return redirect('/')
 
 def profile(request):
-	user_id = request.user  #this object will store all the values of the user
-	user = User.objects.get(pk = user_id.id)
-	context = {'user':user}
+	if request.method == 'POST':
+		participants_form = participants_update_form(request.POST, instance=request.user)
+		profile_form = profile_update_form(request.POST, request.FILES, instance=request.user.profile)
+
+		if participants_form.is_valid and profile_form.is_valid():
+			participants_form.save()
+			profile_form.save()
+
+			messages.success(request, 'Your account has been updated!')
+			return redirect('participants:profile')
+	else:
+		participants_form = participants_update_form(instance=request.user)
+		profile_form = profile_update_form()
+	context={
+		'participants_form': participants_form,
+		'profile_form': profile_form
+	}
 	return render(request, 'participants/profile.html', context)	
 
-def update(request):
-	user_info = request.user
-	user = User.objects.get(pk=user_info.id)
-	context = {'user':user}
-	return render(request,'participants/update.html', context)
 
-def updatedone(request):
-	user_info = request.user
-	user = User.objects.get(pk=user_info.id)
 
-	if request.method == 'POST':
-		user.username = request.POST['username']
-		user.first_name = request.POST['first_name']
-		user.last_name = request.POST['last_name']
-		user.email = request.POST['email']
+# def updatedone(request):
+# 	user_info = request.user
+# 	user = User.objects.get(pk=user_info.id)
 
-		if User.objects.filter(username=user.username).exists():
-			messages.info(request, 'Sorry! The username is already taken!')
-			return redirect('/')
-		elif User.objects.filter(email=user.email).exists():
-			messages.info(request, 'Email Taken!')
-			return redirect('/')
-		else:
-			user.save()
-			messages.info(request, 'Profile updated successfully!')
-			return render(request,'index.html')
+# 	if request.method == 'POST':
+# 		user.username = request.POST['username']
+# 		user.first_name = request.POST['first_name']
+# 		user.last_name = request.POST['last_name']
+# 		user.email = request.POST['email']
 
-	else:
-		return render(request,'index.html')
+# 		if User.objects.filter(username=user.username).exists():
+# 			messages.info(request, 'Sorry! The username is already taken!')
+# 			return redirect('/')
+# 		elif User.objects.filter(email=user.email).exists():
+# 			messages.info(request, 'Email Taken!')
+# 			return redirect('/')
+# 		else:
+# 			user.save()
+# 			messages.info(request, 'Profile updated successfully!')
+# 			return render(request,'index.html')
+
+# 	else:
+# 		return render(request,'index.html')
 
 
 		
