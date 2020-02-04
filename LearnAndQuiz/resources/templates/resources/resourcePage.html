@@ -9,7 +9,6 @@
 			<th>Title</th>
 			<th>Author</th>
 			<th>File</th>
-			<th>Download</th>
 		</tr>
 
 	</thead>
@@ -18,13 +17,7 @@
 		<tr>
 			<td>{{resource.title}}</td>
 			<td>{{resource.author}}</td>
-			<td>{{resource.file}}</td>
-			<td>
-				<form method="POST" action="">
-					{% csrf_token %}
-					<button type="submit" class="btn btn-primary btn-sm">Download</button>
-				</form>
-			</td>
+			<td><a href="{{ resource.file.url}}" download>{{resource.file}}<br><button type="submit" class="btn btn-success btn-sm">Download this file</button></a></td>
 		</tr>
 		{% endfor %}
 	</tbody>
