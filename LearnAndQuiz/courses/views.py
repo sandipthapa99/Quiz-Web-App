@@ -3,8 +3,8 @@ from django.db.models import Q
 from .models import Course
 from .forms import OurForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
-
+from django.contrib.auth.models import Group
+from .decorators import admin_only
 
 COURSES_PER_PAGE = 3
 
@@ -55,3 +55,9 @@ def pagination(request, PAGENO, SIZE):
 	"courses":list(Course.values("title", "detail"))
 	}
 	return JsonResponse(dict)
+
+@admin_only
+def delete_course(request, pk):
+	course = Course.objects.get(pk=pk)
+	course.delete()
+	return redirect('courses:courses')

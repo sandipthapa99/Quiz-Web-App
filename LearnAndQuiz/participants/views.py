@@ -63,12 +63,24 @@ def profile(request):
 		participants_form = participants_update_form(request.POST, instance=request.user)
 		profile_form = profile_update_form(request.POST, request.FILES, instance=request.user.profile)
 
-		if participants_form.is_valid and profile_form.is_valid():
-			participants_form.save()
-			profile_form.save()
+		user= request.POST['username']
 
-			messages.success(request, 'Your account has been updated!')
-			return redirect('participants:profile')
+		if participants_form.is_valid and profile_form.is_valid():
+			if User.objects.filter(username=user).exists(): 
+				if request.user.username== user :
+					participants_form.save()
+					profile_form.save()
+					messages.info(request, 'Your account has been updated!')
+					return redirect('participants:profile')
+				else:	
+					messages.info(request, 'Sorry! The username is already taken!')
+					return redirect('participants:profile')
+
+			else:	
+				participants_form.save()
+				profile_form.save()
+				messages.info(request, 'Your account has been updated!')
+				return redirect('participants:profile')
 	else:
 		participants_form = participants_update_form(instance=request.user)
 		profile_form = profile_update_form()

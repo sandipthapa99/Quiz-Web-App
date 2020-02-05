@@ -37,11 +37,18 @@
 	    				<h5 class="card-title">{{course.title}}</h5>
 	    				<p class="card-text">{{course.detail}}</p>
               {% if user.is_authenticated %}
-              <button href="#" class="btn btn-success btn-block">Take this Course</a>
-              <button href="#" class="btn btn-success btn-block">Take this Quiz</a>
+              <button href="#" class="btn btn-success btn-block">Take this Course</button>
+              <button href="#" class="btn btn-success btn-block">Take this Quiz</button>
+              <div style="margin-top: 8px;">
+                <form method="POST" action="{% url 'courses:delete_course' course.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success btn-block">Delete this course</button>
+                </form>
+              </div>
               {% else %}
               <button href="#" class="btn btn-success btn-block">Take this Course</a>
               {% endif %}
+
   					</div>
 
 				</div>
