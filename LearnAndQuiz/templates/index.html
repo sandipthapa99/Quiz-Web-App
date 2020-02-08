@@ -17,25 +17,23 @@
 
 <div style="text-align:center;">
   {% if user.is_authenticated %}
-  <div class="col-md-6">
-    <div class="profile-content-section">
-      <div class="media">
-        <img class="img-circle account-img" src="{{ user.profile.image.url }}" alt="Profile Picture">
-        <div class="media-body">
-          <h2 class="account-heading">{{user.username}}</h2>
-          <p class="text-secondary">{{user.email}}</p>
-          <p class="text-secondary">Your point is **GAMEPOINT GOES HERE**</p>
+  <section class="probootstrap-hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center probootstrap-hero-text pb0 probootstrap-animate" data-animate-effect="fadeIn">
+            <div class="media">
+              <img class="img-circle account-img" src="{{ user.profile.image.url }}" alt="Profile Picture">
+            </div>
+            <h1>Need help or want to help?</h1>
+            <p>Download or upload extra reosources to help learing more fluently.</p>
+            <a href="{{resources}}/resources/upload" class="btn btn-primary btn-md" role="button">Upload</a>
+     <a href="{{resources}}/resources" class="btn btn-primary btn-md" role="button">Download</a></p>
+            </div>
         </div>
+
+
       </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-  <h2>Need Help or Want to Help?</h2>
-  <p>
-     <a href="{{resources}}/resources/upload" class="btn btn-primary btn-ghost btn-md" role="button">Upload Resources</a>
-     <a href="{{resources}}/resources" class="btn btn-primary btn-ghost btn-md" role="button">Download Resourses</a>
-  </div>
-    </p>
+    </section>
   {% else %}
   <section class="probootstrap-hero">
       <div class="container">

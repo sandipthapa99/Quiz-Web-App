@@ -4,6 +4,7 @@ from .models import Course
 from .forms import OurForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 from .decorators import admin_only
 
 COURSES_PER_PAGE = 3
@@ -61,3 +62,10 @@ def delete_course(request, pk):
 	course = Course.objects.get(pk=pk)
 	course.delete()
 	return redirect('courses:courses')
+
+
+
+
+def course_java(request):
+	return render(request, 'courses/java.html')
+	

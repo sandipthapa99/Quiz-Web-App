@@ -1,19 +1,49 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from participants.models import Question, Answer
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 # Create your views here.
-def question(request, pk="1"):
+
+sindex = 0
+eindex = 1
+score = 0
+	
+def question(request, pk="1", qpk=1):
 	if request.method == 'POST':
 		chosen = request.POST['choice']
-		q = Question.objects.get(pk = pk)
+		global sindex
+		global eindex
+		global score
+		q = Question.objects.filter(title_id = pk)[sindex:eindex].get()
 		if str(chosen) == q.correct_ans:
-			return HttpResponse('Correct answer')
-
+				score += 10
+				
+		while eindex < Question.objects.filter(title_id = pk).count():		
+			sindex +=1
+			eindex +=1
+			q = Question.objects.filter(title_id = pk)[sindex:eindex].get()	
+			a = Answer.objects.filter(ques_id = q.pk)
+			return render(request, 'question/question.html', context ={'question':q, 'answer':a})
+			
 		else:
-			return HttpResponse('Incorrect answer')
+			return HttpResponse("The quiz is over!<br> Your score is {}".format(score))
 
 	else:
-		q = Question.objects.get(pk = pk)
-		a = Answer.objects.filter(ques_id = pk)
-		
+		sindex = 0
+		eindex = 1
+		score = 0
+		q = Question.objects.filter(title_id = pk)[sindex:eindex].get()
+		a = Answer.objects.filter(ques_id = q.pk)
 		return render(request, 'question/question.html', context ={'question':q, 'answer':a})
+
+
+
+
+
+
+
+
+
+
+
+

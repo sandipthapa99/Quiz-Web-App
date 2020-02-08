@@ -22,23 +22,24 @@ def update_api(request, pk):
 		course.detail = course_data['detail']
 		course.save()
 		return JsonResponse({"message": "Successfully updated"})
-
+@csrf_exempt
 def delete_data(request, pk):
 	course = Course.objects.get(pk = pk)
 	course.delete()
 	return redirect('courses:courses')
 
 
-def update_data(request, pk):
-	instance = get_object_or_404(Course, id=pk)
-	form = OurForm()
-	if request.method == "POST":
-		form = OurForm(request.POST, reques.FILES, instance)
-		if form.is_valid():
-			form.save()
-			return redirect('courses:courses')
 
-	return render(request, 'courses/courses.html', {'courses': instance})
+# def update_data(request, pk):
+# 	instance = get_object_or_404(Course, id=pk)
+# 	form = OurForm()
+# 	if request.method == "POST":
+# 		form = OurForm(request.POST, reques.FILES, instance)
+# 		if form.is_valid():
+# 			form.save()
+# 			return redirect('courses:courses')
+
+# 	return render(request, 'courses/courses.html', {'courses': instance})
 
 
 

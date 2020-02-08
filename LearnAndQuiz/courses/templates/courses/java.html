@@ -1,0 +1,104 @@
+{% extends "header.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}
+    <title>Java</title>
+    {% endblock %}
+  
+</head>
+
+{% block content %}
+<div class="container">
+  <center><h1>JAVA</h1></center>
+<div>
+  <h1>Basic Concepts!</h1>
+  <p>
+
+    Java is a high level, modern programming language designed in the early 1990s by Sun Microsystems, and currently owned by Oracle.<br>
+    Java is <strong>Platform Independent</strong>, which means that you only need to write the program once to be able to run it on a number of different platforms!<br>
+    Java is <strong>portable</strong>, <strong>robust</strong>, and <strong>dynamic</strong>, with the ability to fit the needs of virtually any type of application.
+  </p>
+</div>
+
+<div>
+  <h1>Hello World!</h1>
+  <p>
+    Let's start by creating a simple program that prints “Hello World” to the screen.
+  </p>
+  <p>
+<pre>
+class MyClass {
+  public static void main(String[ ] args) {
+    System.out.println("Hello World");
+  }
+}
+</pre>
+  </p>
+
+<p>
+In Java, every line of code that can actually run needs to be inside a class.<br>
+In our example, we named the class MyClass.<br>
+
+In Java, each application has an entry point, or a starting point, which is a method called main.<br>
+Along with main, the keywords public and static will also be explained later.<br>
+<div>
+As a summary:
+<ul>
+  <li>Every program in Java must have a class.</li>
+  <li>Every Java program starts from the main method.</li>
+</ul>
+</div>
+
+  </p>
+</div>
+
+<div class="col-md-6">
+  <h1>
+    The main Method
+  </h1>
+  <p>
+    To run our program, the main method must be identical to this signature:
+    <pre>public static void main(String[ ] args)</pre>
+    <div>
+      <ul>
+        <li>public: anyone can access it</li>
+        <li>static: method can be run without creating an instance of the class containing the main method</li>
+        <li>void: method doesn't return any value</li>
+        <li>main: the name of the method</li>
+      </ul>
+    </div>
+  </p>
+
+</div>
+
+<div>
+  <h1>System.out.println()</h1>
+  <p>
+    Next is the body of the main method, enclosed in curly braces:
+<pre>
+{
+  System.out.println("Hello World!");
+}
+</pre>
+    The println method prints a line of text to the screen.
+The System class and its out stream are used to access the println method.
+In classes, methods, and other flow-control structures code is always enclosed in curly braces { }.
+  </p>
+</div>
+</div>
+
+
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
+<script src="{% static 'js/scripts.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+{% endblock %}
+
+
+</html>
