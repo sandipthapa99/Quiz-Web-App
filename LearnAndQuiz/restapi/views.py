@@ -42,10 +42,10 @@ def update_data(request, pk):
 
 
 
-# def pagination(request, PAGENO, SIZE):
-# 	skip = SIZE* (PAGENO -1)
-# 	courses = Course.objects.all() [skip:(PAGENO * SIZE)]
-# 	dict = {
-# 	"courses":list(Course.values("title", "name"))
-# 	}
-# 	return JsonResponse(dict)
+def pagination(request, PAGENO, SIZE):
+	skip = SIZE* (PAGENO -1)
+	courses = Course.objects.all() [skip:(PAGENO * SIZE)]
+	dict = {
+	"courses":list(courses.values("title", "detail"))
+	}
+	return JsonResponse(dict)
