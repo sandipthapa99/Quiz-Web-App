@@ -13,6 +13,7 @@ urlpatterns = [
     path('',include('question.urls')),
     path('',include('resources.urls')),
     path('',include('restapi.urls')),
+    path('',include('customquiz.urls')),
     
 
 ]

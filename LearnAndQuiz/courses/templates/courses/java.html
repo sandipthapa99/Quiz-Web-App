@@ -7,87 +7,196 @@
   {% block title %}
     <title>Java</title>
     {% endblock %}
-  
 </head>
 
 {% block content %}
 <div class="container">
-  <center><h1>JAVA</h1></center>
-<div>
-  <h1>Basic Concepts!</h1>
-  <p>
+    <center><h1>JAVA</h1></center>
+  <div>
+    <h1>Basic Concepts!</h1>
+    <p>
+      Java is a high level, modern programming language designed in the early 1990s by Sun Microsystems, and currently owned by Oracle.<br>
+      Java is <strong>Platform Independent</strong>, which means that you only need to write the program once to be able to run it on a number of different platforms!<br>
+      Java is <strong>portable</strong>, <strong>robust</strong>, and <strong>dynamic</strong>, with the ability to fit the needs of virtually any type of application.
+    </p>
+  </div>
 
-    Java is a high level, modern programming language designed in the early 1990s by Sun Microsystems, and currently owned by Oracle.<br>
-    Java is <strong>Platform Independent</strong>, which means that you only need to write the program once to be able to run it on a number of different platforms!<br>
-    Java is <strong>portable</strong>, <strong>robust</strong>, and <strong>dynamic</strong>, with the ability to fit the needs of virtually any type of application.
-  </p>
-</div>
-
-<div>
-  <h1>Hello World!</h1>
-  <p>
-    Let's start by creating a simple program that prints “Hello World” to the screen.
-  </p>
-  <p>
-<pre>
-class MyClass {
-  public static void main(String[ ] args) {
-    System.out.println("Hello World");
+  <div>
+    <h1>Hello World!</h1>
+    <p>
+      Let's start by creating a simple program that prints “Hello World” to the screen.
+    </p>
+    <p>
+  <pre>
+  class MyClass {
+    public static void main(String[ ] args) {
+      System.out.println("Hello World");
+    }
   }
-}
-</pre>
-  </p>
+  </pre>
+    </p>
 
-<p>
-In Java, every line of code that can actually run needs to be inside a class.<br>
-In our example, we named the class MyClass.<br>
-
-In Java, each application has an entry point, or a starting point, which is a method called main.<br>
-Along with main, the keywords public and static will also be explained later.<br>
-<div>
-As a summary:
-<ul>
-  <li>Every program in Java must have a class.</li>
-  <li>Every Java program starts from the main method.</li>
-</ul>
-</div>
-
-  </p>
-</div>
-
-<div class="col-md-6">
-  <h1>
-    The main Method
-  </h1>
   <p>
-    To run our program, the main method must be identical to this signature:
-    <pre>public static void main(String[ ] args)</pre>
-    <div>
-      <ul>
-        <li>public: anyone can access it</li>
-        <li>static: method can be run without creating an instance of the class containing the main method</li>
-        <li>void: method doesn't return any value</li>
-        <li>main: the name of the method</li>
-      </ul>
+  In Java, every line of code that can actually run needs to be inside a class.<br>
+  In our example, we named the class MyClass.<br>
+
+  In Java, each application has an entry point, or a starting point, which is a method called main.<br>
+  Along with main, the keywords public and static will also be explained later.<br>
+  <div>
+  As a summary:
+  <ul>
+    <li>Every program in Java must have a class.</li>
+    <li>Every Java program starts from the main method.</li>
+  </ul>
+  </div>
+
+    </p>
+  </div>
+
+  <div class="col-md-6">
+    <h1>
+      The main Method
+    </h1>
+    <p>
+      To run our program, the main method must be identical to this signature:
+      <pre>public static void main(String[ ] args)</pre>
+      <div>
+        <ul>
+          <li><b>public:</b> anyone can access it</li>
+          <li><b>static:</b> method can be run without creating an instance of the class containing the main method</li>
+          <li><b>void:</b> method doesn't return any value</li>
+          <li><b>main:</b> the name of the method</li>
+        </ul>
+      </div>
+    </p>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <h1>System.out.println()</h1>
+      <p>
+      Next is the body of the main method, enclosed in curly braces:
+  <pre>
+  {
+    System.out.println("Hello World!");
+  }
+  </pre>
+      The println method prints a line of text to the screen.
+  The System class and its out stream are used to access the println method.
+  In classes, methods, and other flow-control structures code is always enclosed in curly braces <strong>"{ }"</strong>.
+    </p>
+  </div>
+  </div>
+
+
+  <div>
+    <h1>Variables</h1>
+    <p>
+      Variables store data for processing.<br>
+  A variable is given a name (or identifier), such as area, age, height, and the like.<br>
+  The name uniquely identifies each variable, assigning a value to the variable and retrieving the value stored.
+
+  <div>
+  Variables have types. Some examples:
+  <ul>
+    <li><strong>int:</strong> for integers (whole numbers) such as 123 and -456</li>
+    <li><strong>double:</strong> for floating-point or real numbers with optional decimal points and fractional parts in fixed or scientific notations, such as 3.1416, -55.66.</li>
+    <li><strong>String:</strong> for texts such as "Hello" or "Good Morning!". Text strings are enclosed within double quotes.
+  </li>
+  </ul>
+  </div>
+  You can declare a variable of a type and assign it a value. Example:
+  <pre>String name = "David";</pre>
+    </p>
+  </div>
+
+
+  <div>
+    <h1>Increment & Decrement Operators</h1>
+    <p>
+      An increment or decrement operator provides a more convenient and compact way to increase or decrease the value of a variable by one.
+      <div class="col-md-6">
+      <p>
+      The <b>increment</b> operator (++) is used to increase the value of a variable by one.
+  <pre>int test = 5;
+  ++test; 
+  //test is now 6</pre>
+  </p>
+  </div>
+
+  <div class="col-md-6">
+    <p>
+      The <b>decrement</b> operator (--) is used to decrease the value of a variable by one.
+      <pre>int test = 5;
+  --test; 
+  //test is now 4</pre>
+    </p>
     </div>
-  </p>
+  </div>
 
-</div>
 
-<div>
-  <h1>System.out.println()</h1>
-  <p>
-    Next is the body of the main method, enclosed in curly braces:
-<pre>
-{
-  System.out.println("Hello World!");
-}
-</pre>
-    The println method prints a line of text to the screen.
-The System class and its out stream are used to access the println method.
-In classes, methods, and other flow-control structures code is always enclosed in curly braces { }.
-  </p>
-</div>
+  <div>
+    <h1>Decision Making</h1>
+    <p>
+      Conditional statements are used to perform different actions based on different conditions. <br>
+  The if statement is one of the most frequently used conditional statements. <br>
+  If the if statement's condition expression evaluates to true, the block of code inside the if statement is executed. <br>
+  If the expression is found to be false, the first set of code after the end of the if statement (after the closing curly brace) is executed. <br>
+  Syntax:
+  <pre>if (condition) {
+     //Executes when the condition is true
+  }</pre>
+
+  Any of the following comparison operators may be used to form the condition: <br>
+  <strong>&lt;</strong> less than <br>
+  <strong>&gt;</strong> greater than <br>
+  <strong>&excl;&equals;</strong> not equal to <br>
+  <strong>&equals;&equals;</strong> equal to <br>
+  <strong>&le;</strong> less than or equal to <br>
+  <strong>&ge;</strong> greater than or equal to
+    <p>
+  <h4>Exapmles</h4>
+
+  <div class="col-md-4">
+      <pre>int x = 7;
+  if(x < 42) {
+     System.out.println("Hi");
+  }</pre>
+  </div>
+  <div class="col-md-4">
+      <pre>int x = 7;
+  if(x != 42) {
+     System.out.println("Number is not 42");
+  }</pre>
+  </div>
+  <div class="col-md-4">
+      <pre>int x = 7;
+  if(x > 42) {
+     System.out.println("Hello");
+  }</pre>
+  </div>
+
+  </div>
+
+  <div>
+    <h1>if...else Statements</h1>
+    <p>
+      An if statement can be followed by an optional else statement, which executes when the condition evaluates to false. <br>
+  For example:
+  <pre>int age = 30;
+
+  if (age < 16) {
+     System.out.println("Too Young");
+  } else { 
+     System.out.println("Welcome!");
+  }
+  </pre>
+  Output:
+  <pre>Welcome!</pre>
+    </p>
+  </div>
+
 </div>
 
 

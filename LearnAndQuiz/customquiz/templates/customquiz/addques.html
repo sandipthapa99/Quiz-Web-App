@@ -1,0 +1,56 @@
+{% extends "header.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}
+    <title>Add Quiz</title>
+    {% endblock %}
+</head>
+
+{% block content %}
+<body>
+<div class="container">
+  <h1>Add some more questions for your topic "{{topic.title}}"</h1>
+  <form action="{% url 'customquiz:addques' topic.pk %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token%}
+
+        <div class="form-group">
+            <input type="text" name="question" class="form-control rounded-pill form-control-lg" placeholder="Question" required="TRUE">
+        </div>
+        <div class="form-group">
+            <input type="text" name="correct_ans" class="form-control rounded-pill form-control-lg" placeholder="Correct Answer" required="TRUE">
+        </div>
+        <div class="form-group">
+            <input type="text" name="opt1" class="form-control rounded-pill form-control-lg" placeholder="Option1" required="TRUE">
+        </div>
+        <div class="form-group">
+            <input type="text" name="opt2" class="form-control rounded-pill form-control-lg" placeholder="Option2" required="TRUE">
+        </div>
+        <div class="form-group">
+            <input type="text" name="opt3" class="form-control rounded-pill form-control-lg" placeholder="Option3" required="TRUE">
+        </div>
+        <div class="form-group">
+            <input type="text" name="opt4" class="form-control rounded-pill form-control-lg" placeholder="Option4" required="TRUE">
+        </div>
+    <input type="submit" value="Add" class="btn btn-success" />
+    <a href="{% url 'courses:courses' %}" class="btn btn-success" style="margin-left: 8px;">Done</a>
+    </form>
+
+
+    
+    </div>
+
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
+<script src="js/scripts.min.js"></script>
+<script src="js/custom.min.js"></script>
+    
+
+
+</body>
+{% endblock %}
+</html>

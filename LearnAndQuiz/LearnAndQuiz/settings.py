@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'question',
     'resources',
     'restapi',
+    'customquiz',
 ]
 
 MIDDLEWARE = [

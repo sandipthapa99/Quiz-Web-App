@@ -1,0 +1,207 @@
+{% extends "header.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}
+    <title>Python</title>
+    {% endblock %}
+  
+</head>
+
+{% block content %}
+<div class="container">
+    <center><h1>PYTHON</h1></center>
+  <div>
+    <h1>Basic Concepts!</h1>
+    <p>
+
+      Python is a popular programming language. It was created by Guido van Rossum, and released in 1991.<br>
+      It is used for:
+      <ul>
+        <li>Web development(server-side)</li>
+        <li>Software development</li>
+        <li>System scripting</li>
+      </ul>
+    </p>
+  </div>
+
+  <div>
+    <h1>Hello World!</h1>
+    <p>
+      Let's start by creating a simple program that prints “Hello World” to the screen.
+    </p>
+    <p>
+  <pre>
+  print("Hello, World!")
+  </pre>
+    </p>
+
+  <p>
+  Simple as that. Save your file. Open your command line, navigate to the directory where you saved your file, and run:<br>
+  <pre>C:\Users\Your Name>python helloworld.py</pre>
+  Output:
+  <pre>Hello, World!</pre>
+
+    </p>
+  </div>
+
+  <div>
+    <h1>
+      Python Indentation
+    </h1>
+    <p>
+      Indentation refers to the spaces at the beginning of a code line. <br>
+      Where in other programming languages the indentation in code is for readability only, the indentation in Python is very important. <br>
+
+      Python uses indentation to indicate a block of code.
+      Example:
+      <pre>if 5 > 2:
+    print("Five is greater than two!")</pre>
+    Python will give you an error if you skip the indentation.
+    </p>
+
+  </div>
+
+
+
+  <div>
+    <h1>Python Variables</h1>
+    <p>
+      In Python, variables are created when you assign a value to it.
+
+  <div>
+    <p>
+  Python has no command for declaring variable.
+  Example:
+  <pre>x = 5
+  y = "Hello, World!"
+  print(x)
+  print(y)</pre></p>
+  <p>
+    <h4>Assign Value to Multiple Variables</h4>
+    Python allows you to assign values to multiple variables in one line.
+    <pre>
+  x, y, z = "Orange", "Banana", "Cherry"
+  print(x)
+  print(y)
+  print(z)
+    </pre>
+    <h4>Global Variables</h4>
+    Variables that are created outside of a function are known as global variables.
+    <pre>
+  x = "awesome"
+  def myfunc():
+    print("Python is " + x)
+  myfunc()   
+    </pre>
+  </p>
+
+  </div>
+
+
+    </p>
+  </div>
+
+
+  <div>
+    <h1>Python Operators</h1>
+    <p>
+      Operators are used to perform operations on variables and values.</p>
+
+    <div class="col-md-6">
+    <h2>Python Arithmetic Operators</h2>
+    <p>
+      Arithmetic operators are used with numeric values to perform common mathematical operations:
+    </p>
+    <table class = "table table-hover">
+    <thead>
+      <tr>
+        <th>Operator</th>
+        <th>Name</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>+</td>
+        <td>Addition</td>
+        <td>x + y</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>Subtraction</td>
+        <td>x - y</td>
+      </tr>
+      <tr>
+        <td>*</td>
+        <td>Multiplication</td>
+        <td>x * y</td>
+      </tr>
+      <tr>
+        <td>/</td>
+        <td>Division</td>
+        <td>x / y</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="col-md-6">
+    <h2>Python Assignment Operators</h2>
+    <p>
+      Assignment operators are used to assign values to variables:
+    </p>
+    <table class = "table table-hover">
+    <thead>
+      <tr>
+        <th>Operator</th>
+        <th>Example</th>
+        <th>Same As</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>=</td>
+        <td>x = 5</td>
+        <td>x = y</td>
+      </tr>
+      <tr>
+        <td>+=</td>
+        <td>x += 3</td>
+        <td>x = x + 3</td>
+      </tr>
+      <tr>
+        <td>-=</td>
+        <td>x -= 3</td>
+        <td>x = x - 3</td>
+      </tr>
+      <tr>
+        <td>%=</td>
+        <td>x %= 3</td>
+        <td>x = x % 3</td>
+      </tr>
+      <tr>
+        <td>^=</td>
+        <td>x ^= 3</td>
+        <td>x = x ^ 3</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </div>
+
+</div>
+
+
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
+<script src="{% static 'js/scripts.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+{% endblock %}
+
+
+</html>
