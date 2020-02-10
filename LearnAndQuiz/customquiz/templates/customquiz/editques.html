@@ -14,11 +14,22 @@
 
 <div class="container" style="margin-top: 50px;">
 
-
+<table class = "table table-hover">
 <form method="post" action="{% url 'customquiz:editques' question.pk %}">
 {% csrf_token %}
-<label>{{question.ques}}</label>
-<input type="text" name="newques">
+<thead>
+	<tr>
+		<th><label>Current Question: {{question.ques}}</label></th>
+		<th><label>Correct Answer: {{question.correct_ans}}</label></th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>New Question<input type="text" name="newques" required="True"></td>
+		<td>New Correct answer<input type="text" name="corans" required="True"></td>
+	</tr>	
+</tbody>
+
 <table class = "table table-hover">
 	
 	<thead>
@@ -29,16 +40,21 @@
 {% for a in answers %}
 	<tbody>
 		<tr>
-			<td>{{a.ans}}</td>
-			<td><input type="text" name="newans"></td>
+			
+			<td><input type="text" name="newans" placeholder="{{a.ans}}" required="True"></td>
 		</tr>
 		{% endfor %}
 	</tbody>
 </table>
 <button type="submit" value="Submit">Submit</button>
+</table>
 </form>
 </div>
-
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
 <script src="{% static 'js/scripts.min.js' %}"></script>
 <script src="{% static 'js/custom.min.js' %}"></script>
 {% endblock %}

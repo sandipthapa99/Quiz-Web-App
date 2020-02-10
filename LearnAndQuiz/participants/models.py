@@ -18,8 +18,6 @@ class Question(models.Model):
 	def __str__(self):
 		return self.ques
 
-	def is_valid_question(self):
-		return(self.ques != self.correct_ans)
 
 
 class Answer(models.Model):

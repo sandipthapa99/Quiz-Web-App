@@ -1,9 +1,16 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
-from .models import Question
 
-class QuestionTestCase(TestCase):
 
-	def setUp(self):
-	def test_valid_question(self):
-		question=Question.objects.create(ques="some question", correct_ans="some answer")
-		self.assertTrue(question.is_valid_question())
+class LogInTest(TestCase):
+    def setUp(self):
+        self.credentials = {
+            'username': 'something',
+            'password': 'something'}
+        User.objects.create_user(**self.credentials)
+
+    def test_login(self):
+        # send login data
+        response = self.client.post('/signin/', self.credentials, follow=True)
+        # should be logged in now
+        self.assertTrue(response.context['user'].is_active)

@@ -28,6 +28,7 @@
 		<tr>
 			<td>{{q.ques}}</td>
 			<td><a href="{% url 'customquiz:editques' q.pk %}"><button type="submit" class="btn btn-success btn-md">Edit</button></a></td>
+			<td><a href="{% url 'customquiz:deleteques' q.pk %}"><button type="submit" class="btn btn-success btn-md">Delete</button></a></td>
 		</tr>
 		{% endfor %}
 	</tbody>
