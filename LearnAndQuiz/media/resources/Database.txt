@@ -1,0 +1,77 @@
+alter pluggabe data
+-to enter pluggable
+
+alter session set container=orclpdb;
+-to alter the session. It is necessary to alter the session to shift from container 
+to pluggable database.
+
+show con_name
+-shows container name
+
+desc tableName
+-to show the table description
+
+ insert all
+  2   into studentHer values(1,'Hemang','Gautam')
+  3  into studentHer values(2,'Hem','Basyal')
+  4  into studentHer values(3,'Ram','Bogati')
+  5  into studentHer values(4,'Ram','Adhikari')
+  6  into studentHer values(5,'Hem','Gupta')
+  7  select * from dual;
+
+
+first stored in dual and temporary data is fetched to studentHer.
+
+select * from studentHer;
+
+Update studentHer set age=19 where student_id=2;
+-to add new value into new column;
+
+select DISTINCT fanme from studentHer;
+-shows single data from duplicate values.
+
+ select * from studentHer order by fanme asc;
+-to order in ascending order.
+
+delete from studentHer where fanme='Ram' AND student_id='4';
+-To delete a row.
+
+alter table studentHer rename column fanme to fname;
+to rename column.
+
+ select count(fname) from studentHer;
+to count the repeated values.
+
+create table customer(customer_name varchar2(20),age int check(age>=18));
+-The CHECK constraint is used to limit the value range that can be placed in a column.
+-SQL> insert all
+  2  into customer values ('Ram',20)
+  3  into customer values ('SHyam',17)
+  4  into customer values ('Leo',19)
+  5  select * from dual;
+insert all
+*
+ERROR at line 1:
+ORA-02290: check constraint (SYS.SYS_C007795) violated
+
+-SQL> insert all
+  2  into customer values ('Ram',20)
+  3  into customer values ('Leo',19)
+  4  select * from dual;
+
+2 rows created.
+
+
+create table defaultTable(id number primary key,name varchar2(20) default 'Hari',age number);
+-defualt vaues set if the entry is empty.
+SQL> select * from defaultTable;
+
+        ID NAME                        AGE
+---------- -------------------- ----------
+         1 Hari                         20
+
+
+
+
+
+

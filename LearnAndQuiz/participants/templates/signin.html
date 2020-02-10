@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}
+    <title>Sign In</title>
+    {% endblock %}
+</head>
+<body>
+<form action="" method="POST">
+    {% csrf_token%}
+    <input type="text" name="username" placeholder="Username" required="TRUE" /><br>
+    <input type="password" name="password" placeholder="password" required="TRUE"/><br> 
+    <input type="submit" value="Log In" />
+    </form>
+
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
+<script src="js/scripts.min.js"></script>
+<script src="js/custom.min.js"></script>
+</body>
+</html>

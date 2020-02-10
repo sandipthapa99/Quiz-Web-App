@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="{% static 'css/signin.css' %}">
   <link rel="stylesheet" href="{% static 'css/courses.css' %}">
   <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <link rel="stylesheet" href="{% static 'css/alert.css' %}">
 
  
 </head>
@@ -35,9 +36,9 @@
         
         {% if user.is_authenticated %}
         <li class="disabled"><a href="#">Hello, {{user.username}}</a></li>
-        <li><a href="{{courses}}/courses">Courses</a></li>
-        <li><a href="{{ participants }}/logout">Log Out</a></li>
-        <li><a href="{{ participants }}/profile">Profile</a></li>
+        <li><a href="{%url 'courses:courses' %}">Courses</a></li>
+        <li><a href="{%url 'participants:logout'%}">Log Out</a></li>
+        <li><a href="{%url 'participants:profile'%}">Profile</a></li>
         {% else %}
         
         <li class="probootstra-cta-button"><a href="{{ participants }}/signin" class="btn">Log in</a></li>

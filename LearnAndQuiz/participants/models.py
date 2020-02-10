@@ -12,15 +12,18 @@ class Profile(models.Model):
 
 class Question(models.Model):
 	ques = models.TextField()
-	correct_ans = models.CharField(max_length = 20)
+	correct_ans = models.CharField(max_length = 100)
 	title = models.ForeignKey(Course, on_delete = models.CASCADE)
 
 	def __str__(self):
 		return self.ques
 
+	def is_valid_question(self):
+		return(self.ques != self.correct_ans)
+
 
 class Answer(models.Model):
-	ans = models.CharField(max_length=20)
+	ans = models.CharField(max_length=100)
 	ques = models.ForeignKey(Question, on_delete = models.CASCADE)
 
 	def __str__(self):

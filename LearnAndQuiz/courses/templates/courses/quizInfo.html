@@ -1,0 +1,42 @@
+
+
+{% extends "header.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}
+    <title>Python</title>
+    {% endblock %}
+  
+</head>
+
+{% block content %}
+<section class="probootstrap-hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center probootstrap-hero-text pb0 probootstrap-animate" data-animate-effect="fadeIn">
+            <h1>Welcome to the Quiz Arena!</h1>
+            <h3>Quiz Info:</h3>
+            <p>Each question contains 10 points.</p>
+            <a href="{% url 'question:question' courses.pk %}" class="btn btn-primary btn-md">Start!</a>
+            <a href="{% url 'customquiz:addques' courses.pk %}" class="btn btn-primary btn-md">Add questions!</a>
+            <a href="{% url 'customquiz:showques' courses.pk %}" class="btn btn-primary btn-md">Edit the quiz!</a>
+            </div>
+        </div>
+      </div>
+    </section>
+
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
+<script src="{% static 'js/scripts.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+{% endblock %}
+
+
+
+</html>

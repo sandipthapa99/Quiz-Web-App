@@ -1,0 +1,21 @@
+{% extends "header.html"%}
+<!DOCTYPE html>
+<html>
+<head>
+	{% block title %}
+    <title>Profile</title>
+    {% endblock %}
+</head>
+<body>
+	  {% block content %}
+
+	<ul>
+		<li>Username: {{ user.username }}</li>
+		<li>Email: {{ user.email }}</li>
+		<li>First name: {{ user.first_name }} </li>
+		<li>Last name: {{ user.last_name }} </li>
+	</ul>
+	  {% endblock %} 
+
+</body>
+</html>>

@@ -427,8 +427,8 @@ a:hover, a:focus, a:active {
 }
 
 .probootstrap-hero .probootstrap-hero-text {
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 @media screen and (max-width: 768px) {

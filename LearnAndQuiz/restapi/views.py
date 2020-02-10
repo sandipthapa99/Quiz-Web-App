@@ -6,10 +6,10 @@ import json
 
 def read_api(request):
 	course = Course.objects.all()
-	dict_value = {"course":list(course.values('title', 'detail'))}
-	return JsonResponse(dict_value)
+	dictionary = {"course":list(course.values('title', 'detail'))}
+	return JsonResponse(dictionary)
 
-@csrf_exempt
+@csrf_exempt #bypassing csrf verification. Used to customize views
 def update_api(request, pk):
 	course = Course.objects.get(pk = pk)
 	if request.method == "GET":
@@ -22,26 +22,13 @@ def update_api(request, pk):
 		course.detail = course_data['detail']
 		course.save()
 		return JsonResponse({"message": "Successfully updated"})
-
+@csrf_exempt
 def delete_data(request, pk):
 	course = Course.objects.get(pk = pk)
 	course.delete()
 	return redirect('courses:courses')
 
-
-def update_data(request, pk):
-	instance = get_object_or_404(Course, id=pk)
-	form = OurForm()
-	if request.method == "POST":
-		form = OurForm(request.POST, reques.FILES, instance)
-		if form.is_valid():
-			form.save()
-			return redirect('courses:courses')
-
-	return render(request, 'courses/courses.html', {'courses': instance})
-
-
-
+#pagination
 def pagination(request, PAGENO, SIZE):
 	skip = SIZE* (PAGENO -1)
 	courses = Course.objects.all() [skip:(PAGENO * SIZE)]

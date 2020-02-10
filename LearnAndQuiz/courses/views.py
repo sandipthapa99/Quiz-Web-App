@@ -3,8 +3,9 @@ from django.db.models import Q
 from .models import Course
 from .forms import OurForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
-
+from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
+from .decorators import admin_only
 
 COURSES_PER_PAGE = 3
 
@@ -33,25 +34,47 @@ def coursePage(request):
 
 def search(query=None):
 	queryset = []
-	queries = query.split(" ")
+	queries = query.split(" ") #allows to search in paragraph
 	for q in queries:
 		courses = Course.objects.filter(
 			Q(title__icontains=q) |
 			Q(detail__icontains=q)
-			)
+			) #case insensitive
 		for course in courses:
-			queryset.append(course)
+			queryset.append(course) #adds course into queryset
 
 	return list(set(queryset))
 
 
+@admin_only #only admin can access this function. Defined in decorators
+def delete_course(request, pk):
+	course = Course.objects.get(pk=pk)
+	course.delete()
+	return redirect('courses:courses')
+
+def quiz_info(request, pk=11):
+	c = Course.objects.get(pk=pk)
+	return render(request, "courses/quizinfo.html", {'courses':c})
 
 
-#pagination
-def pagination(request, PAGENO, SIZE):
-	skip= SIZE * (PAGENO -1)
-	courses = Course.objects.all() [skip:(PAGENO * SIZE)]
-	dict = {
-	"courses":list(Course.values("title", "detail"))
-	}
-	return JsonResponse(dict)
+#needs to be logged in to get access to these func. If not redirect to login page
+@login_required(login_url='/signin/')
+def course_java(request):
+	return render(request, 'courses/java.html')
+
+@login_required(login_url='/signin/')
+def course_python(request):
+	return render(request, 'courses/python.html')
+
+@login_required(login_url='/signin/')
+def course_html(request):
+	return render(request, 'courses/html.html')
+
+@login_required(login_url='/signin/')
+def course_php(request):
+	return render(request, 'courses/comingsoon.html')
+
+@login_required(login_url='/signin/')
+def course_c(request):
+	return render(request, 'courses/comingsoon.html')
+	

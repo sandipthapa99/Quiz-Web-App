@@ -1,0 +1,39 @@
+
+
+{% extends "header.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}
+    <title>Python</title>
+    {% endblock %}
+  
+</head>
+
+{% block content %}
+<section class="probootstrap-hero">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 text-center probootstrap-hero-text pb0 probootstrap-animate" data-animate-effect="fadeIn">
+            <h1>Congratulations!!!</h1>
+            <h2 style="font-size: 50px;">The Quiz is Over!</h2>
+            <h2 style="font-size: 40px;">Your final score is {{s}}</h2>
+            </div>
+        </div>
+      </div>
+    </section>
+
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
+<script src="{% static 'js/scripts.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+{% endblock %}
+
+
+
+</html>

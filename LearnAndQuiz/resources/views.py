@@ -5,7 +5,10 @@ from django.db.models import Q
 from django.http import HttpResponse, JsonResponse
 from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
+from django.contrib.auth.decorators import login_required
 
+
+@login_required(login_url="/signin/")
 def upload_resource(request):
 	if request.method == "POST":
 		form = ResourceForm(request.POST, request.FILES)
@@ -15,14 +18,7 @@ def upload_resource(request):
 	form = ResourceForm()
 	return render(request, "resources/upload.html", {"form": form})
 
-
+@login_required(login_url="/signin/")
 def resource_Page(request):
 	resource = Resource.objects.all()
-	return render(request, "resources/resourcePage.html", {"resources": resource})
-
-
-def download_line(request):
-    fs = FileSystemStorage('/meida/resources/{{resources.file}}}')
-    FileResponse(fs.open('filename.pdf', 'rb'), content_type='application/force-download')
-    response['Content-Disposition'] = 'attachment; filename="filename.pdf"'
-    return response
+	return render(request, "resources/resourcePage.html", {"resources": resource})#for obj in context's key

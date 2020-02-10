@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User, auth
 from django.contrib import messages
 from .forms import participants_update_form, profile_update_form
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
 	return render(request, 'index.html')
@@ -14,13 +16,13 @@ def signin(request):
 		password = request.POST['password']
 
 		user=auth.authenticate(username=username, password=password)
-
-		if user is not None:
+		# if the user already has account
+		if user is not None: 
 			auth.login(request, user)
-			return redirect('/')
+			return redirect('/') #redirects to the homepage/index page	
 		else:
 			messages.info(request, 'Invalid credentials!')
-			return redirect('/')
+			return redirect('participants:signin')
 	else:
 		return render(request, 'participants/signin.html')
 
@@ -58,19 +60,33 @@ def logout(request):
 	auth.logout(request)
 	return redirect('/')
 
+
+@login_required(login_url="/signin/")
 def profile(request):
 	if request.method == 'POST':
-		participants_form = participants_update_form(request.POST, instance=request.user)
-		profile_form = profile_update_form(request.POST, request.FILES, instance=request.user.profile)
+		participants_form = participants_update_form(request.POST, instance=request.user) #gets username & email form participants_update_form and stores in declared var
+		profile_form = profile_update_form(request.POST, request.FILES, instance=request.user.profile) #gets image from profile_update_form
 
-		if participants_form.is_valid and profile_form.is_valid():
-			participants_form.save()
-			profile_form.save()
+		user= request.POST['username']
 
-			messages.success(request, 'Your account has been updated!')
-			return redirect('participants:profile')
+		if participants_form.is_valid and profile_form.is_valid(): #checks form validity
+			if User.objects.filter(username=user).exists(): #cecks if username already exists
+				if request.user.username== user : #if the username is same as before, save it. Helps in updating single field
+					participants_form.save()
+					profile_form.save()
+					messages.info(request, 'Your account has been updated!')
+					return redirect('participants:profile')
+				else:	
+					messages.info(request, 'Sorry! The username is already taken!')
+					return redirect('participants:profile')
+
+			else:	
+				participants_form.save()
+				profile_form.save()
+				messages.info(request, 'Your account has been updated!')
+				return redirect('participants:profile')
 	else:
-		participants_form = participants_update_form(instance=request.user)
+		participants_form = participants_update_form(instance=request.user) #shows user info in input field like placeholder
 		profile_form = profile_update_form()
 	context={
 		'participants_form': participants_form,
@@ -78,31 +94,6 @@ def profile(request):
 	}
 	return render(request, 'participants/profile.html', context)	
 
-
-
-# def updatedone(request):
-# 	user_info = request.user
-# 	user = User.objects.get(pk=user_info.id)
-
-# 	if request.method == 'POST':
-# 		user.username = request.POST['username']
-# 		user.first_name = request.POST['first_name']
-# 		user.last_name = request.POST['last_name']
-# 		user.email = request.POST['email']
-
-# 		if User.objects.filter(username=user.username).exists():
-# 			messages.info(request, 'Sorry! The username is already taken!')
-# 			return redirect('/')
-# 		elif User.objects.filter(email=user.email).exists():
-# 			messages.info(request, 'Email Taken!')
-# 			return redirect('/')
-# 		else:
-# 			user.save()
-# 			messages.info(request, 'Profile updated successfully!')
-# 			return render(request,'index.html')
-
-# 	else:
-# 		return render(request,'index.html')
 
 
 		

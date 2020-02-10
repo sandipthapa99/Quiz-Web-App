@@ -1,0 +1,92 @@
+{% extends "header.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% block title %}
+    <title>Add Quiz</title>
+    {% endblock %}
+</head>
+
+{% block content %}
+<body>
+<div class="container">
+  <h1>Add your own custom quiz</h1>
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token%}
+   
+        <div class="form-group">
+            <input type="text" name="title" class="form-control rounded-pill form-control-lg" placeholder="Topic" required="TRUE">
+        </div>
+        <div class="form-group">
+            <input type="text" name="detail" class="form-control rounded-pill form-control-lg" placeholder="Detail" required="TRUE">
+        </div>
+        <div class="form-group">
+            <input type="file" name="image" class="form-control rounded-pill form-control-lg" placeholder="Image" required="TRUE">
+        </div>
+        
+    <input type="submit" value="Add" />
+    </form>
+    </div>
+
+{% for message in messages %}
+<script type="text/javascript">
+  alert('{{message}}');
+</script>
+{% endfor %}
+<script src="js/scripts.min.js"></script>
+<script src="js/custom.min.js"></script>
+    
+
+
+</body>
+{% endblock %}
+</html>
+
+
+ <!-- <div>
+      <label>Topic</label>
+      <div>{{course_form.title}}</div>  
+    </div> 
+
+    <div>
+      <label>Details</label>
+      <div>{{course_form.detail}}</div>  
+    </div> 
+
+    <div>
+      <label>Image</label>
+      <div>{{course_form.image}}</div>  
+    </div> 
+
+    <div>
+      <label>Question</label>
+      <div>{{question_form.ques}}</div>  
+    </div> 
+
+    <div>
+      <label>Correct Answer</label>
+      <div>{{question_form.correct_ans}}</div>  
+    </div> 
+
+    <div>
+      <label>Option 1</label>
+      <div>{{answer_form.ans}}</div>  
+    </div> 
+
+    <div>
+      <label>Option 2</label>
+      <div>{{answer_form.ans}}</div>  
+    </div> 
+
+    <div>
+      <label>Option 3</label>
+      <div>{{answer_form.ans}}</div>  
+    </div> 
+
+    <div>
+      <label>Option 4</label>
+      <div>{{answer_form.ans}}</div>  
+    </div> 
+ -->
