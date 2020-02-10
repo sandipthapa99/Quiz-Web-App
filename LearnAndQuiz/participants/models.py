@@ -22,6 +22,7 @@ class Question(models.Model):
 		return(self.ques != self.correct_ans)
 
 
+
 class Answer(models.Model):
 	ans = models.CharField(max_length=100)
 	ques = models.ForeignKey(Question, on_delete = models.CASCADE)

@@ -6,7 +6,7 @@ import json
 
 def read_api(request):
 	course = Course.objects.all()
-	dictionary = {"course":list(course.values('title', 'detail'))}
+	dictionary = {"course":list(course.values('title', 'detail', 'image'))}
 	return JsonResponse(dictionary)
 
 @csrf_exempt #bypassing csrf verification. Used to customize views

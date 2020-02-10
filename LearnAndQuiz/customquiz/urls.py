@@ -10,5 +10,7 @@ urlpatterns = [
    	path('customquiz/showques/<int:pk>', views.showques, name = 'showques'),
    	path('customquiz/editques/<int:pk>', views.editques, name = 'editques'),
    	path('customquiz/edittitle/<int:pk>', views.edittitle, name = 'edittitle'),
+   	path('customquiz/deleteques/<int:pk>', views.deleteques, name = 'deleteques'),
+
 
 ]

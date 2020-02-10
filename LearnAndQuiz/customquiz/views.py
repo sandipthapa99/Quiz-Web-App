@@ -74,26 +74,43 @@ def edittitle(request,pk):
 		return render(request, 'customquiz/edittitle.html', context={'question':question})	
 
 def editques(request, pk):
-	if request.method == 'POST':		
-		q = Question.objects.get(pk=pk)
-		a1 = Answer.objects.filter(ques_id = pk)[0:1].get()
-		a2 = Answer.objects.filter(ques_id = pk)[1:2].get()
-		a3 = Answer.objects.filter(ques_id = pk)[2:3].get()
-		a4 = Answer.objects.filter(ques_id = pk)[3:4].get()
+	if request.method == 'POST':
+		try:		
+			q = Question.objects.get(pk=pk)
+			a1 = Answer.objects.filter(ques_id = pk)[0:1].get()
+			a2 = Answer.objects.filter(ques_id = pk)[1:2].get()
+			a3 = Answer.objects.filter(ques_id = pk)[2:3].get()
+			a4 = Answer.objects.filter(ques_id = pk)[3:4].get()
 
-		q.ques = request.POST['newques']
-		a1.ans = str(request.POST.getlist('newans')[0:1])
-		a2.ans = str(request.POST.getlist('newans')[1:2])
-		a3.ans = str(request.POST.getlist('newans')[2:3])
-		a4.ans = str(request.POST.getlist('newans')[3:4])
-		q.save()
-		a1.save()
-		a2.save()
-		a3.save()
-		a4.save()
-		return HttpResponse('The answers for {} have been saved as {},{},{},{}'.format(q.ques,a1.ans,a2.ans,a3.ans,a4.ans))
+			q.ques = request.POST['newques']
+			q.correct_ans = request.POST['corans']
+			a1.ans = str(request.POST.getlist('newans')[0:1])
+			a2.ans = str(request.POST.getlist('newans')[1:2])
+			a3.ans = str(request.POST.getlist('newans')[2:3])
+			a4.ans = str(request.POST.getlist('newans')[3:4])
+			q.save()
+			a1.save()
+			a2.save()
+			a3.save()
+			a4.save()
+
+			title = Course.objects.get(pk=q.title_id)
+			questions = Question.objects.filter(title_id=title.pk)
+			return render(request, 'customquiz/showques.html', context={'question':questions, 'course':title})
+		except:
+			messages.info(request, "You can only edit the questions with 4 options")
+			return HttpResponseRedirect("")
 
 	else:
 		questions = Question.objects.get(pk=pk)
 		answers = Answer.objects.filter(ques_id = pk)
 		return render(request, 'customquiz/editques.html', context={'question':questions, 'answers':answers})
+
+
+def deleteques(request,pk):
+	q=Question.objects.get(pk=pk)
+	title=Course.objects.get(pk=q.title_id)
+	q.delete()
+	questions=Question.objects.filter(title_id=title.pk)
+	return render(request, 'customquiz/showques.html', context={'question':questions, 'course':title})
+
